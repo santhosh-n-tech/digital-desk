@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Digital Desk | StudyFlow</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* BASIC PAGE STYLE */
+
+        body {
+            background-color: #f6f3ff;
+            color: #39334f;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            background-color: white;
+            padding: 18px 30px;
+            border-bottom: 2px solid #ded3fa;
+        }
+
+        header h1 {
+            color: #8b6bd6;
+            margin: 0;
+        }
+
+        header p {
+            color: #888098;
+            margin-bottom: 0;
+        }
+
+        /* MAIN LAYOUT */
+
+        .container {
+            display: flex;
+            min-height: 80vh;
+        }
+
+        .sidebar {
+            background-color: white;
+            width: 230px;
+            padding: 20px;
+            border-right: 2px solid #e4dcf8;
+        }
+
+        .main {
+            flex: 1;
+            padding: 25px;
+            min-width: 0;
+        }
+
+        /* HEADINGS AND LINKS */
+
+        h2 {
+            color: #8060c8;
+            font-size: 19px;
+        }
+
+        .menu a {
+            display: block;
+            color: #69617d;
+            text-decoration: none;
+            padding: 12px;
+            margin-bottom: 7px;
+            border-radius: 8px;
+        }
+
+        .menu a:hover {
+            background-color: #eee8ff;
+            color: #7655c4;
+        }
+
+        /* CARDS */
+
+        .card {
+            background-color: white;
+            border: 1px solid #e0d5f8;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px #e9e2f7;
+        }
+
+        .card:hover {
+            border-color: #b6a0ee;
+        }
+
+        .small-text {
+            color: #938ba6;
+            font-size: 13px;
+        }
+
+        /* FOCUS TIMER */
+
+        .timer-box {
+            background-color: #f0eaff;
+            border: 1px solid #d7c9fa;
+            border-radius: 12px;
+            padding: 18px 10px;
+            text-align: center;
+        }
+
+        .time {
+            background-color: white;
+            border: 2px dashed #c4b5fd;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 34px;
+            font-weight: bold;
+            color: #8060c8;
+            margin: 15px 0;
+        }
+
+        /* BUTTONS */
+
+        button {
+            background-color: #9879df;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 16px;
+            cursor: pointer;
+            margin: 3px;
+        }
+
+        button:hover {
+            background-color: #7655c4;
+        }
+
+        .reset-button {
+            background-color: #e9e1fa;
+            color: #604b9a;
+        }
+
+        .delete-button {
+            background-color: #fff0f3;
+            color: #b34e70;
+        }
+
+        /* PROGRESS BAR */
+
+        .progress-background {
+            background-color: #eee8f8;
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            background-color: #a48ae5;
+            height: 12px;
+            width: 0%;
+        }
+
+        .percentage {
+            color: #8060c8;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        /* TASKS */
+
+        .task {
+            background-color: #fbfaff;
+            border: 1px solid #e5def5;
+            border-left: 5px solid #b6a0ee;
+            border-radius: 9px;
+            padding: 13px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .task input {
+            accent-color: #8b6bd6;
+            width: 16px;
+            height: 16px;
+        }
+
+        .task-name {
+            flex: 1;
+            overflow-wrap: anywhere;
+        }
+
+        .completed {
+            color: #9991a9;
+            text-decoration: line-through;
+        }
+
+        /* ADD TASK FORM */
+
+        input[type="text"] {
+            padding: 11px;
+            border: 1px solid #d8ccef;
+            border-radius: 8px;
+            margin: 5px 0;
+            max-width: 100%;
+        }
+
+        /* REMINDER AND FOOTER */
+
+        .reminder {
+            background-color: #eae3ff;
+            color: #62518e;
+            border-radius: 12px;
+            padding: 18px;
+            line-height: 1.7;
+        }
+
+        footer {
+            background-color: white;
+            text-align: center;
+            padding: 18px;
+            color: #8d859f;
+            border-top: 2px solid #ded3fa;
+            font-size: 13px;
+        }
+
+        /* SMALL SCREEN */
+
+        @media (max-width: 650px) {
+            .container {
+                display: block;
+            }
+
+            .sidebar {
+                width: auto;
+                border-right: none;
+                border-bottom: 2px solid #e4dcf8;
+            }
+
+            .main {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+
+    <header>
+        <h1>✿ StudyFlow</h1>
+        <p>The Digital Desk | My Personal Study Planner</p>
+    </header>
+
+    <div class="container">
+
+        <!-- LEFT SIDEBAR -->
+
+        <div class="sidebar">
+
+            <h2>My Workspace</h2>
+
+            <div class="menu">
+                <a href="#dashboard">▦ Dashboard</a>
+                <a href="#focus">◷ Focus Zone</a>
+                <a href="#schedule">✓ My Schedule</a>
+            </div>
+
+            <!-- TIMER -->
+
+            <div class="card" id="focus">
+
+                <h2>Focus Zone</h2>
+
+                <div class="timer-box">
+
+                    <p>◉ Focus Session</p>
+
+                    <div class="time" id="timer">25:00</div>
+
+                    <p class="small-text" id="timerMessage">
+                        One task at a time. Stay focused!
+                    </p>
+
+                    <button onclick="startTimer()"
+                            id="startButton">
+                        Start
+                    </button>
+
+                    <button class="reset-button"
+                            onclick="resetTimer()">
+                        Reset
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MAIN CONTENT -->
+
+        <div class="main" id="dashboard">
+
+            <h2>Today's Schedule ✧</h2>
+
+            <p class="small-text">
+                Small steps lead to meaningful progress.
+            </p>
+
+            <p id="todayDate"></p>
+
+            <!-- COMPLETION CARD -->
+
+            <div class="card">
+
+                <h2>Overall Completion</h2>
+
+                <p class="percentage" id="percentage">0%</p>
+
+                <div class="progress-background">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+                <p id="taskCount" class="small-text">
+                    0 out of 3 tasks completed
+                </p>
+
+            </div>
+
+            <!-- DAILY TASKS -->
+
+            <div class="card" id="schedule">
+
+                <h2>My Daily Tasks</h2>
+
+                <p class="small-text">
+                    Add your study goals and mark them when finished.
+                </p>
+
+                <!-- FORM TO ADD TASKS -->
+
+                <form id="taskForm">
+
+                    <input type="text" id="taskInput"
+                           placeholder="Enter a new task"
+                           required>
+
+                    <button type="submit">+ Add Task</button>
+
+                </form>
+
+                <!-- TASK LIST -->
+
+                <div id="taskList">
+
+                    <div class="task">
+                        <input type="checkbox"
+                               onchange="updateProgress()">
+                        <span class="task-name">
+                            Revise HTML and CSS
+                        </span>
+                        <button class="delete-button"
+                                onclick="deleteTask(this)">X</button>
+                    </div>
+
+                    <div class="task">
+                        <input type="checkbox"
+                               onchange="updateProgress()">
+                        <span class="task-name">
+                            Practise Python
+                        </span>
+                        <button class="delete-button"
+                                onclick="deleteTask(this)">X</button>
+                    </div>
+
+                    <div class="task">
+                        <input type="checkbox"
+                               onchange="updateProgress()">
+                        <span class="task-name">
+                            Review today's notes
+                        </span>
+                        <button class="delete-button"
+                                onclick="deleteTask(this)">X</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PERSONAL REMINDER -->
+
+            <div class="reminder">
+                <h2>A Little Reminder ✦</h2>
+
+                <p>
+                    Understand the concept. Practise it.
+                    Build something with it.
+                </p>
+
+                <p>
+                    Progress matters more than perfection.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        The Digital Desk | StudyFlow | 2026
+    </footer>
+
+
+    <script>
+        // SHOW TODAY'S DATE
+
+        let today = new Date();
+
+        document.getElementById("todayDate").innerHTML =
+            today.toDateString();
+
+
+        // UPDATE TASK COMPLETION
+
+        function updateProgress() {
+
+            let tasks = document.querySelectorAll(
+                "#taskList .task"
+            );
+
+            let completed = 0;
+
+            tasks.forEach(function(task) {
+
+                let checkbox = task.querySelector("input");
+
+                let taskName = task.querySelector(".task-name");
+
+                if (checkbox.checked) {
+                    completed++;
+                    taskName.classList.add("completed");
+                } else {
+                    taskName.classList.remove("completed");
+                }
+
+            });
+
+            let total = tasks.length;
+            let percent = 0;
+
+            if (total > 0) {
+                percent = Math.round(completed / total * 100);
+            }
+
+            document.getElementById("percentage").innerHTML =
+                percent + "%";
+
+            document.getElementById("progressBar").style.width =
+                percent + "%";
+
+            document.getElementById("taskCount").innerHTML =
+                completed + " out of " + total + " tasks completed";
+        }
+
+
+        // ADD A NEW TASK
+
+        document.getElementById("taskForm").onsubmit =
+            function(event) {
+
+                event.preventDefault();
+
+                let taskInput =
+                    document.getElementById("taskInput");
+
+                let taskName = taskInput.value.trim();
+
+                if (taskName === "") {
+                    return;
+                }
+
+                let newTask = document.createElement("div");
+                newTask.className = "task";
+
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.onchange = updateProgress;
+
+                let name = document.createElement("span");
+                name.className = "task-name";
+                name.textContent = taskName;
+
+                let deleteButton =
+                    document.createElement("button");
+
+                deleteButton.className = "delete-button";
+                deleteButton.textContent = "X";
+                deleteButton.onclick = function() {
+                    deleteTask(deleteButton);
+                };
+
+                newTask.appendChild(checkbox);
+                newTask.appendChild(name);
+                newTask.appendChild(deleteButton);
+
+                document.getElementById("taskList")
+                    .appendChild(newTask);
+
+                taskInput.value = "";
+
+                updateProgress();
+            };
+
+
+        // DELETE A TASK
+
+        function deleteTask(button) {
+
+            button.parentElement.remove();
+
+            updateProgress();
+        }
+
+
+        // 25-MINUTE TIMER
+
+        let seconds = 25 * 60;
+        let timerRunning = false;
+        let timerInterval;
+
+        function showTimer() {
+
+            let minutes = Math.floor(seconds / 60);
+            let remainingSeconds = seconds % 60;
+
+            if (remainingSeconds < 10) {
+                remainingSeconds = "0" + remainingSeconds;
+            }
+
+            document.getElementById("timer").innerHTML =
+                minutes + ":" + remainingSeconds;
+        }
+
+        function startTimer() {
+
+            if (timerRunning) {
+
+                clearInterval(timerInterval);
+                timerRunning = false;
+
+                document.getElementById("startButton").innerHTML =
+                    "Resume";
+
+                return;
+            }
+
+            if (seconds <= 0) {
+                return;
+            }
+
+            timerRunning = true;
+
+            document.getElementById("startButton").innerHTML =
+                "Pause";
+
+            document.getElementById("timerMessage").innerHTML =
+                "You're doing great. Keep going!";
+
+            timerInterval = setInterval(function() {
+
+                seconds--;
+
+                showTimer();
+
+                if (seconds <= 0) {
+
+                    clearInterval(timerInterval);
+                    timerRunning = false;
+
+                    document.getElementById("startButton")
+                        .innerHTML = "Finished";
+
+                    document.getElementById("timerMessage")
+                        .innerHTML = "Focus session complete!";
+
+                    alert("Well done! Your focus session is complete.");
+                }
+
+            }, 1000);
+        }
+
+
+        // RESET THE TIMER
+
+        function resetTimer() {
+
+            clearInterval(timerInterval);
+
+            seconds = 25 * 60;
+            timerRunning = false;
+
+            showTimer();
+
+            document.getElementById("startButton").innerHTML =
+                "Start";
+
+            document.getElementById("timerMessage").innerHTML =
+                "One task at a time. Stay focused!";
+        }
+
+
+        // INITIAL PROGRESS
+
+        updateProgress();
+    </script>
+
+</body>
+</html>
